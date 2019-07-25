@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_storyimg
+    - node.type.test_data_importer
+  module:
+    - file
+_core:
+  default_config_hash: 7WAGLiqa0czcT9GQfGCSyp8ma1GIPd6YlQhv3MJQH3I
+id: node.test_data_importer.field_storyimg
+field_name: field_storyimg
+entity_type: node
+bundle: test_data_importer
+label: StoryImg
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: news_img
+  file_extensions: 'png jpg jpeg'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

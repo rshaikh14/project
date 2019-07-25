@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 6LKPsq1Pkel8ivoqjs6FvAmBVIqqslTEI5aD9StppjA
+name: Category
+vid: news_category
+description: 'QED 42 news importer'
+hierarchy: 0
+weight: 0

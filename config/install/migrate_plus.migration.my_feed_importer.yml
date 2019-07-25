@@ -1,0 +1,87 @@
+id: my_feed_importer
+label: 'NDTV Custom feed'
+source:
+  plugin: url
+  data_fetcher_plugin: http
+  data_parser_plugin: xml
+  urls:
+    - 'http://feeds.feedburner.com/ndtvnews-top-stories.xml'
+  item_selector: /rss/channel/item
+  fields:
+    -
+      name: title
+      label: title
+      selector: title
+    -
+      name: guid
+      label: guid
+      selector: guid
+    -
+      name: link
+      label: link
+      selector: link
+    -
+      name: updatedAt
+      label: updatedAt
+      selector: updatedAt
+    -
+      name: pubDate
+      label: pubDate
+      selector: pubDate
+    -
+      name: StoryImage
+      label: StoryImage
+      selector: StoryImage
+    -
+      name: category
+      label: category
+      selector: category
+      
+  ids:
+    guid:
+      type: string
+  constants:
+    file_source_uri: public://news_img/
+    file_destination: 'public://news_img/image.jpg'
+process:
+  title: title
+  field_guid: guid
+  field_mylink: link
+  changed:
+    plugin: format_date
+    from_format: 'F d, Y h:i A'
+    to_format: U
+    source: updatedAt
+  created:
+    plugin: format_date
+    from_format: 'D, d M Y H:i:s O'
+    to_format: U
+    source: pubDate
+  field_storyimg:
+    -
+      plugin: download
+      source:
+        - StoryImage
+        - constants/file_destination
+      rename: true
+    -
+      plugin: entity_generate
+  field_mycat:
+    plugin: entity_generate
+    source: category
+    entity_type: taxonomy_term
+    #ignore_case: true
+    bundle_key: vid
+    bundle: news_category
+    value_key: name
+  type:
+    plugin: default_value
+    default_value: test_data_importer
+destination:
+  plugin: 'entity:node'
+dependencies:
+  module:
+    - my_feed_data
+  enforced:
+    module:
+      - my_feed_data

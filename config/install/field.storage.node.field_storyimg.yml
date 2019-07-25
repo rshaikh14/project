@@ -1,0 +1,24 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - file
+    - node
+_core:
+  default_config_hash: L_Y4s3t7uM3AqKhqUmyqfnIRA0tHTahc43sK0RQhoFQ
+id: node.field_storyimg
+field_name: field_storyimg
+entity_type: node
+type: file
+settings:
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
